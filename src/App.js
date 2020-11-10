@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import data from './data';
+import Quote from'./Quote';
+ class App extends React.Component{
+   constructor(props){
+     super(props);
+     console.log(); 
+     this.state = {
+       randomNumber: Math.floor(Math.random() * data.length)
+     }
+   } 
+   quoteHandler = () =>{
+     this.setState({
+       randomNumber : Math.floor(Math.random() * data.length)
+     });
+   }
+   render(){
+    const quotes = data.filter(item => item.quoteId === this.state.randomNumber);
+    let inputStyle = {
+      background: quotes[0].color
+    };
+    document.body.style.backgroundColor = quotes[0].color;
+     return(
+       <div className ='quote-class'>
+         <Quote number = {this.state.randomNumber}/>
+         <button className='next-quote-button' style={inputStyle}onClick = {this.quoteHandler}>NextQuote</button>
+       </div>
+     );
+   }
+ }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
 
 export default App;
