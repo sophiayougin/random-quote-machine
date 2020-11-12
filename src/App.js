@@ -5,14 +5,14 @@ import Quote from'./Quote';
  class App extends React.Component{
    constructor(props){
      super(props);
-     console.log(); 
      this.state = {
-       randomNumber: Math.floor(Math.random() * data.length)
+       randomNumber: this.getRandomNumber(data.length)
      }
-   } 
+   }
+   getRandomNumber = (n) => Math.floor(Math.random() * n);
    quoteHandler = () =>{
      this.setState({
-       randomNumber : Math.floor(Math.random() * data.length)
+       randomNumber : this.getRandomNumber(data.length)
      });
    }
    render(){
@@ -24,7 +24,7 @@ import Quote from'./Quote';
      return(
        <div className ='quote-class'>
          <Quote number = {this.state.randomNumber}/>
-         <button className='next-quote-button' style={inputStyle}onClick = {this.quoteHandler}>NextQuote</button>
+         <button className='next-quote-button' style={inputStyle} onClick = {this.quoteHandler}>NextQuote</button>
        </div>
      );
    }
