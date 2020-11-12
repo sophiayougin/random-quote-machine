@@ -16,11 +16,11 @@ import Quote from'./Quote';
      });
    }
    render(){
-    const quotes = data.filter(item => item.quoteId === this.state.randomNumber);
+    const quotes = data.find(item => item.quoteId === this.state.randomNumber);
     let inputStyle = {
-      background: quotes[0].color
+      background: quotes.color
     };
-    document.body.style.backgroundColor = quotes[0].color;
+    document.body.style.backgroundColor = quotes.color;
      return(
        <div className ='quote-class'>
          <Quote number = {this.state.randomNumber}/>
